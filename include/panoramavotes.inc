@@ -133,7 +133,7 @@ typeset PanoramaVoteCallback
 	function void (int results[MAXPLAYERS + 1], any data);
 };
 
-forward void PanoramaVotes_OnVoteReceive(int client, int &decision);
+forward Action PanoramaVotes_OnVoteReceive(int client, int &decision);
 
 methodmap PanoramaVote __nullable__
 {
