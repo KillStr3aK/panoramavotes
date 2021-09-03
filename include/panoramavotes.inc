@@ -194,6 +194,9 @@ methodmap PanoramaVote __nullable__
 	// Optional data to parse through vote callbacks.
     public native void SetCallbackData(any data);
 
+	// Add client to the vote.
+	public native void AddClient(int client);
+
 	// Execute vote.
     public native void Execute(int timeout = VOTE_DURATION_FOREVER, PanoramaVoteCallback PassedCallback = INVALID_FUNCTION, PanoramaVoteCallback FailedCallback = INVALID_FUNCTION);
 
@@ -211,6 +214,7 @@ public void __pl_customvotes_SetNTVOptional()
 	MarkNativeAsOptional("PanoramaVote.Cancel");
 	MarkNativeAsOptional("PanoramaVote.Execute");
 	MarkNativeAsOptional("PanoramaVote.GetFailReason");
+	MarkNativeAsOptional("PanoramaVote.AddClient");
 
 	MarkNativeAsOptional("PanoramaVote.SetDisplayText");
 	MarkNativeAsOptional("PanoramaVote.SetPassedText");
