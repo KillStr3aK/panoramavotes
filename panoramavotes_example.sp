@@ -38,7 +38,7 @@ void OnFailed(int results[MAXPLAYERS + 1])
 	PrintToChatAll(" \x07oh bro you're right, he made antidll, isn't he?");
 }
 
-public void PanoramaVotes_OnVoteReceive(int client, int &decision)
+public Action PanoramaVotes_OnVoteReceive(int client, int &decision)
 {
 	PrintToChatAll(" \x06%N \x01voted %s", client, decision == 0 ? "\x04yes" : "\x07no");
 }
