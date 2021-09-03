@@ -8,13 +8,15 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	}
 
 	CreateNative("PanoramaVote.PanoramaVote", Native_PanoramaVote_Instance);
-	CreateNative("PanoramaVote.Cancel", Native_PanoramaVote_Cancel);
 	CreateNative("PanoramaVote.Execute", Native_PanoramaVote_Execute);
+	CreateNative("PanoramaVote.AddClient", Native_PanoramaVote_AddClient);
+
+	CreateNative("PanoramaVote.Cancel", Native_PanoramaVote_Cancel);
+	CreateNative("PanoramaVote.GetFailReason", Native_PanoramaVote_GetFailReason);
 
 	CreateNative("PanoramaVote.SetDisplayText", Native_PanoramaVote_SetDisplayText);
 	CreateNative("PanoramaVote.SetPassedText", Native_PanoramaVote_SetPassedText);
 	CreateNative("PanoramaVote.SetCallbackData", Native_PanoramaVote_SetCallbackData);
-	CreateNative("PanoramaVote.GetFailReason", Native_PanoramaVote_GetFailReason);
 
 	CreateNative("PanoramaVote.Initiator.get", Native_PanoramaVote_Initiator_get);
 	CreateNative("PanoramaVote.Initiator.set", Native_PanoramaVote_Initiator_set);

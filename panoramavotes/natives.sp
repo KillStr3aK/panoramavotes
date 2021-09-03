@@ -141,20 +141,45 @@ public int Native_PanoramaVote_Issue_set(Handle plugin, int params)
 
 public any Native_PanoramaVote_Initiator_get(Handle plugin, int params)
 {
+    if(!VoteManager.IsVoteInProgress)
+    {
+        return ThrowNativeError(SP_ERROR_NATIVE, "No vote is in progress.");
+    }
+
     return VoteInfo.Setup.Initiator;
 }
 
 public any Native_PanoramaVote_Team_get(Handle plugin, int params)
 {
+    if(!VoteManager.IsVoteInProgress)
+    {
+        return ThrowNativeError(SP_ERROR_NATIVE, "No vote is in progress.");
+    }
+
     return VoteInfo.Setup.Team;
 }
 
 public any Native_PanoramaVote_PassPercentage_get(Handle plugin, int params)
 {
+    if(!VoteManager.IsVoteInProgress)
+    {
+        return ThrowNativeError(SP_ERROR_NATIVE, "No vote is in progress.");
+    }
+
     return VoteInfo.Setup.PassPercentage;
 }
 
 public any Native_PanoramaVote_Issue_get(Handle plugin, int params)
 {
+    if(!VoteManager.IsVoteInProgress)
+    {
+        return ThrowNativeError(SP_ERROR_NATIVE, "No vote is in progress.");
+    }
+
     return VoteInfo.Setup.Issue;
+}
+
+public int Native_PanoramaVote_AddClient(Handle plugin, int params)
+{
+    VoteInfo.Setup.Clients[VoteInfo.Setup.ClientCount++] = GetNativeCell(2);
 }
