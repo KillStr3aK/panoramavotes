@@ -54,7 +54,14 @@ public Action OnVoteReceived(int client, const char[] command, int argc)
 	Action fwd_return;
 	Call_StartForward(OnClientVoteReceived);
 	Call_PushCell(client); // int client
-	Call_PushCellRef(vote_decision); // int &voteDecision
+	Call_PushCellRef(vote_decision); // int &decision
+	int error = Call_Finish(fwd_return);
+
+	if (error != SP_ERROR_NONE)
+	{
+		ThrowNativeError(error, "OnClientVoteReceived - Error: %d", error);
+		return Plugin_Stop;
+	}
 
 	// Stop the further actions if needs to.
 	if (fwd_return >= Plugin_Handled)
@@ -86,7 +93,7 @@ public void OnClientDisconnect_Post(int client)
 
 	if(GetClientCount() == 0)
 	{
-		//abort
+		DisplayCustomVoteResults();
 	} else {
 		if(ClientDecision[client] != VOTE_DECISION_NONE)
 		{

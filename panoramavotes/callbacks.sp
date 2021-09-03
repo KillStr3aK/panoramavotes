@@ -29,6 +29,7 @@ void DisplayCustomVoteResults()
 	GetVoteBroadcastClients(clients, client_count);
 	
 	PanoramaVoteCallback callback;
+	bool reset = false;
 	
 	if ((float(positive_votes) / float(client_count)) * 100.0 >= VoteInfo.Setup.PassPercentage)
 	{
@@ -39,9 +40,10 @@ void DisplayCustomVoteResults()
 			msg.SetInt("team", VoteInfo.Setup.Team);
 			msg.SetInt("vote_type", view_as<int>(VoteInfo.Setup.Issue));
 			msg.SetString("disp_str", VoteInfo.Setup.PassedString);
-			msg.SetString("details_str", VoteInfo.Setup.PassedString);
+			msg.SetString("details_str", "");
 			
 			EndMessage();
+			reset = true;
 		}
 		
 		callback = VoteInfo.PassedCallback;
@@ -69,14 +71,14 @@ void DisplayCustomVoteResults()
 		Call_Finish();
 	}
 	
-	VoteInfo.Reset();
+	if(reset)
+		VoteInfo.Reset();
+		
 	VoteManager.IsVoteInProgress = false;
 }
 
 Action Timer_RepeatVotePass(Handle timer)
 {
-	#pragma unused timer
-	
 	int clients[MAXPLAYERS];
 	int client_count;
 	GetVoteBroadcastClients(clients, client_count);
@@ -86,9 +88,10 @@ Action Timer_RepeatVotePass(Handle timer)
 	msg.SetInt("team", VoteInfo.Setup.Team);
 	msg.SetInt("vote_type", view_as<int>(VoteInfo.Setup.Issue));
 	msg.SetString("disp_str", VoteInfo.Setup.PassedString);
-	msg.SetString("details_str", VoteInfo.Setup.PassedString);
+	msg.SetString("details_str", "");
 	
 	EndMessage();
+	VoteInfo.Reset();
 }
 
 public Action Timer_RepeatVoteDisplay(Handle timer)
