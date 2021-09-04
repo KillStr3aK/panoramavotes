@@ -22,7 +22,7 @@ public void OnPluginStart()
 public Action Command_TestVote(int client, int args)
 {
 	PanoramaVote vote = new PanoramaVote(client);
-	vote.SetDisplayText("is Er!k a <b>rat</b>?");
+	vote.SetDisplayText("is <img src='https://cdn.discordapp.com/avatars/262042968628789249/01886a53c044bc43a96bce8009e066db.png?size=32'/> Er!k a <b>rat</b>?");
 	vote.SetPassedText("<font color='#3df218'>Yes!</font>");
 	vote.Execute(15, OnPassed, OnFailed);
 	return Plugin_Handled;
