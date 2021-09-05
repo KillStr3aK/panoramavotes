@@ -22,7 +22,7 @@ public void OnPluginStart()
 public Action Command_TestVote(int client, int args)
 {
 	PanoramaVote vote = new PanoramaVote(client);
-	vote.SetDisplayText("is <img src='https://cdn.discordapp.com/avatars/262042968628789249/01886a53c044bc43a96bce8009e066db.png?size=32'/> Er!k a <b>rat</b>?");
+	vote.SetDisplayText("Enable <b>bunnyhop</b>?");
 	vote.SetPassedText("<font color='#3df218'>Yes!</font>");
 	vote.Execute(15, OnPassed, OnFailed);
 	return Plugin_Handled;
@@ -30,12 +30,15 @@ public Action Command_TestVote(int client, int args)
 
 void OnPassed(int results[MAXPLAYERS + 1])
 {
-	PrintToChatAll(" \x04atleast good in beat saber! watch him playing: https://www.twitch.tv/er1k97");
+	ConVar sv_autobunnyhopping = FindConVar("sv_autobunnyhopping");
+	sv_autobunnyhopping.BoolValue = true;
+	
+	PrintToChatAll(" \x04Bunnyhop enabled!");
 }
 
 void OnFailed(int results[MAXPLAYERS + 1])
 {
-	PrintToChatAll(" \x07oh bro you're right, he made antidll, isn't he?");
+	PrintToChatAll(" \x07unluko, keep walking");
 }
 
 public Action PanoramaVotes_OnVoteReceive(int client, int &decision)
